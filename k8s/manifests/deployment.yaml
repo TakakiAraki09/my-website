@@ -17,3 +17,22 @@ spec:
           image: nginx
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  # これがService名
+  name: demo-service
+spec:
+  selector:
+    app: demo  # ← Deploymentのlabels.appと一致
+  ports:
+  - port: 80
+    targetPort: 80
