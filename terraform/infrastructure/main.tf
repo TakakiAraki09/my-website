@@ -63,5 +63,5 @@ resource "google_dns_record_set" "iperf3" {
   managed_zone = google_dns_managed_zone.arakey_dev.name
   project      = var.project
 
-  rrdatas = ["35.213.37.71"] # iperf3_external_ip
+  rrdatas = [google_compute_address.iperf3_ip.address] # iperf3_external_ip
 }
