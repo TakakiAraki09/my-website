@@ -4,6 +4,7 @@ https://cloud.google.com/kubernetes-engine/docs/quickstarts/create-cluster-using
 $ terraform init
 $ terraform plan
 
+$ gcloud auth login
 $ gcloud auth application-default login
 
 # $ gcloud container clusters create-auto my-website --region=asia-northeast1

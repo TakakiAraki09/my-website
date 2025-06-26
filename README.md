@@ -1,7 +1,6 @@
 # my-website
 
 
-project name: my-website-464008
 
 ```sh
 
@@ -30,12 +29,15 @@ gcloud container clusters describe my-website --zone=asia-northeast2
 
 ```
 
-
 https://zenn.dev/ring_belle/articles/gcp-gke-domain
 
-id: admin
-password: NPdZrMvU3jrgNbKV
+## gcp
+
+project name: my-website-464008
+
 
 ## urls
+
+- [neondb](https://console.neon.tech/app/projects/gentle-darkness-68702060?branchId=br-raspy-wildflower-a1ylq6i4&database=neondb)
 
 https://console.cloud.google.com/kubernetes/list/overview?hl=ja&inv=1&invt=Ab1Dbw&project=my-website-464008

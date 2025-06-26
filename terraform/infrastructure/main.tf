@@ -1,9 +1,3 @@
-// resource "google_compute_address" "static_ip" {
-//   name         = "my-website-static-ip"
-//   project      = var.project
-//
-//   region       = "asia-northeast1"
-// }
 
 resource "google_compute_network" "default" {
   name    = "my-website-network"
@@ -36,3 +30,14 @@ resource "google_compute_subnetwork" "default" {
   }
 }
 
+resource "google_compute_address" "iperf3_ip" {
+  name         = "iperf3-ip"
+  project      = var.project
+  region       = var.region
+  address_type = "EXTERNAL"
+  network_tier = "STANDARD"  # または "STANDARD" (安い方)
+}
+
+output "iperf3_external_ip" {
+  value = google_compute_address.iperf3_ip.address
+}
