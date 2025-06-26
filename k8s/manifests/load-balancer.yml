@@ -2,6 +2,8 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: demo
+  annotations:
+    networking.gke.io/load-balancer-ip: "projects/my-website-464008/regions/asia-northeast1/addresses/iperf3-ip"
 spec:
   gatewayClassName: gke-l7-global-external-managed
   listeners:
