@@ -41,3 +41,27 @@ resource "google_compute_address" "iperf3_ip" {
 output "iperf3_external_ip" {
   value = google_compute_address.iperf3_ip.address
 }
+
+# dns登録
+resource "google_dns_managed_zone" "arakey_dev" {
+  name        = "arakey-dev"
+  dns_name    = "arakey.dev."
+  description = "My domain"
+  project     = var.project
+}
+
+# ネームサーバーを出力（レジストラで設定用）
+output "name_servers" {
+  value       = google_dns_managed_zone.arakey_dev.name_servers
+  description = "Configure these at your domain registrar"
+}
+
+resource "google_dns_record_set" "iperf3" {
+  name         = "www.arakey.dev."
+  type         = "A"
+  ttl          = 300
+  managed_zone = google_dns_managed_zone.arakey_dev.name
+  project      = var.project
+
+  rrdatas = ["35.213.37.71"] # iperf3_external_ip
+}
