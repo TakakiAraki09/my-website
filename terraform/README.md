@@ -6,8 +6,8 @@ $ terraform plan
 
 $ gcloud auth application-default login
 
-$ gcloud container clusters create-auto my-website --region=asia-northeast1
-$ gcloud container clusters get-credentials my-website --region=asia-northeast1
+# $ gcloud container clusters create-auto my-website --region=asia-northeast1
+$ gcloud container clusters get-credentials my-website-gke --region=asia-northeast1
 ```
 
 terraform init
