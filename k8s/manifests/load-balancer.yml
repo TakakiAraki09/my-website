@@ -1,15 +1,30 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: demo-certificate
+spec:
+  domains:
+    - www.arakey.dev
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: demo
   annotations:
-    networking.gke.io/load-balancer-ip: "projects/my-website-464008/regions/asia-northeast1/addresses/iperf3-ip"
+    networking.gke.io/load-balancer-ip: "projects/my-website-464008/global/addresses/gkegw1-xmf2-default-demo-9xzqv0opo9r3"
+    networking.gke.io/ssl-certificates: "demo-certificate"
 spec:
   gatewayClassName: gke-l7-global-external-managed
   listeners:
     - name: http
       protocol: HTTP
       port: 80
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - name: https
+      protocol: HTTPS
+      port: 443
       allowedRoutes:
         namespaces:
           from: Same
@@ -23,6 +38,9 @@ metadata:
 spec:
   parentRefs:
   - name: demo
+    sectionName: https  # HTTPSリスナーも参照
+  - name: demo
+    sectionName: http   # HTTPリスナーも残す（HTTPからHTTPSへのリダイレクト用）
   hostnames:
   - "www.arakey.dev"
   rules:
