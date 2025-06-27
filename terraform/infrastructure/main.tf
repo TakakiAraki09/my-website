@@ -30,18 +30,6 @@ resource "google_compute_subnetwork" "default" {
   }
 }
 
-resource "google_compute_address" "iperf3_ip" {
-  name         = "iperf3-ip"
-  project      = var.project
-  region       = var.region
-  address_type = "EXTERNAL"
-  network_tier = "STANDARD"  # または "STANDARD" (安い方)
-}
-
-output "iperf3_external_ip" {
-  value = google_compute_address.iperf3_ip.address
-}
-
 # dns登録
 resource "google_dns_managed_zone" "arakey_dev" {
   name        = "arakey-dev"
@@ -56,12 +44,16 @@ output "name_servers" {
   description = "Configure these at your domain registrar"
 }
 
+data "google_compute_global_address" "gke_ingress_ip" {
+  name    = "gkegw1-xmf2-default-demo-9xzqv0opo9r3"
+  project = var.project
+}
+
 resource "google_dns_record_set" "iperf3" {
   name         = "www.arakey.dev."
   type         = "A"
   ttl          = 300
   managed_zone = google_dns_managed_zone.arakey_dev.name
   project      = var.project
-
-  rrdatas = [google_compute_address.iperf3_ip.address] # iperf3_external_ip
+  rrdatas      = [data.google_compute_global_address.gke_ingress_ip.address]
 }
