@@ -1,43 +1,127 @@
-# my-website
+# my-website Repository Documentation
 
+本リポジトリは、GCP上でのWebサイト運用を目的としたモノレポ構成のプロジェクトです。
 
+## 🏗️ アーキテクチャ概要
 
-```sh
+- **Cloud Platform**: Google Cloud Platform (GCP)
+- **Container Orchestration**: Google Kubernetes Engine (GKE)
+- **Database**: NeonDB
+- **Infrastructure as Code**: Terraform
+- **Workspace Management**: pnpm + Turbo
 
-# 現在のプロジェクトを確認
-gcloud config get-value project
-
-$ gcloud config set project my-website-464008
-
-# Clusterにアクセスするためのcredentialsも取得します。
-$ gcloud container clusters get-credentials my-website --region asia-northeast2
-
-$ kubectl get pod -n argocd
-
-# $ kubectl port-forward argocd-server 11111:443 -n argocd
-$ kubectl port-forward svc/argocd-server 8080:443 -n argocd
-$ open http://localhost:11111
-
-$ gcloud compute project-info describe --project=my-website-464008
-
-## clean up
-$ gcloud container clusters delete argo-demo-cluster --region us-west1
-
-
-gcloud container node-pools list --cluster=my-website --zone=asia-northeast2
-gcloud container clusters describe my-website --zone=asia-northeast2
+## 📁 ディレクトリ構造
 
 ```
+my-website/
+├── applications/          # フロントエンド・Webアプリケーション層
+├── packages/             # 共有ライブラリ・ユーティリティ
+├── services/             # バックエンドサービス・API層
+├── k8s/                  # Kubernetes デプロイメント設定
+├── terraform/            # インフラストラクチャ管理
+├── saas/                 # 外部SaaSサービス設定
+└── ルート設定ファイル
+```
 
-https://zenn.dev/ring_belle/articles/gcp-gke-domain
+## 🎯 各層の概念
 
-## gcp
+### Applications Layer (`applications/`)
+- Webアプリケーション
+- フロントエンドコンポーネント
+- ユーザーインターフェース
 
-project name: my-website-464008
+### Packages Layer (`packages/`)
+- 共有ライブラリ
+- ユーティリティ関数
+- 型定義
+- 設計システムコンポーネント
 
+### Services Layer (`services/`)
+- REST API
+- GraphQL API
+- バックエンドビジネスロジック
+- データアクセス層
 
-## urls
+### Infrastructure Layer (`terraform/`)
+- GKEクラスター定義
+- ネットワーク設定
+- DNS管理
+- セキュリティ設定
 
-- [neondb](https://console.neon.tech/app/projects/gentle-darkness-68702060?branchId=br-raspy-wildflower-a1ylq6i4&database=neondb)
+### Deployment Layer (`k8s/`)
+- Kubernetesマニフェスト
+- サービス定義
+- Ingress設定
+- ConfigMap/Secret管理
 
-https://console.cloud.google.com/kubernetes/list/overview?hl=ja&inv=1&invt=Ab1Dbw&project=my-website-464008
+### SaaS Integration (`saas/`)
+- 外部サービス連携設定
+- データベース設定（NeonDB）
+
+## 🚀 開発環境セットアップ
+
+### 前提条件
+- Node.js 18+
+- pnpm 10.9.0+
+- Google Cloud CLI
+- kubectl
+- Terraform
+
+### セットアップ手順
+
+1. **依存関係のインストール**
+   ```bash
+   pnpm install
+   ```
+
+2. **GCP認証設定**
+   ```bash
+   gcloud auth login
+   gcloud config set project my-website-464008
+   ```
+
+3. **インフラストラクチャのデプロイ**
+   ```bash
+   cd terraform
+   terraform init
+   terraform apply
+   ```
+
+4. **Kubernetesクラスター接続**
+   ```bash
+   gcloud container clusters get-credentials my-website-gke --region=asia-northeast1
+   ```
+
+## 🛠️ 開発コマンド
+
+### Turbo使用コマンド
+- `pnpm build` - 全プロジェクトのビルド
+- `pnpm dev` - 開発サーバー起動
+- `pnpm test` - テスト実行
+- `pnpm lint` - コード品質チェック
+- `pnpm typecheck` - 型チェック
+
+### インフラ管理コマンド
+- `terraform plan` - インフラ変更プレビュー
+- `terraform apply` - インフラ適用
+- `kubectl apply -f k8s/manifests/` - Kubernetesリソース適用
+
+## 🌐 環境・リソース情報
+
+### GCP Project
+- **Project ID**: my-website-464008
+- **Region**: asia-northeast1
+- **Cluster**: my-website-gke
+
+### Database
+- **Provider**: NeonDB
+- **Console**: https://console.neon.tech/app/projects/gentle-darkness-68702060
+
+### Domain
+- **Primary**: arakey.dev
+- **Subdomain**: www.arakey.dev
+
+## 📚 詳細ドキュメント
+
+- [Kubernetes Configuration](./k8s/README.md)
+- [Infrastructure Management](./terraform/README.md)
