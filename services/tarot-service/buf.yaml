@@ -2,8 +2,6 @@
 version: v2
 modules:
   - path: ./protobuf
-    excludes:
-      - vendor
 deps:
   - buf.build/bufbuild/protovalidate
   - buf.build/googleapis/googleapis

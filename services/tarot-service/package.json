@@ -1,5 +1,5 @@
 {
-  "name": "@gfc/proto",
+  "name": "@workspace/proto",
   "version": "0.0.1",
   "description": "Araki",
   "author": "Araki",
@@ -21,19 +21,17 @@
   },
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
+  },
+  "devDependencies": {
+    "@connectrpc/connect-migrate": "2.0.2",
     "@bufbuild/buf": "^1.54.0",
     "@bufbuild/protobuf": "^2.3.0",
     "@bufbuild/protoc-gen-es": "^2.3.0",
     "@connectrpc/connect": "2.0.2",
     "@connectrpc/connect-node": "2.0.2",
     "@connectrpc/protoc-gen-connect-query": "2.0.1",
-    "@gfc/protoc-gen-connect-service-client": "workspace:^",
-    "@gfc/protoc-gen-zod": "workspace:^",
     "grpc_tools_node_protoc_ts": "^5.3.3",
     "zod": "^3.24.1"
-  },
-  "devDependencies": {
-    "@connectrpc/connect-migrate": "2.0.2"
   }
 }
 

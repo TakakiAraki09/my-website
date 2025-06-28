@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/zchee/schema/refs/heads/main/buf.gen.schema.json
+version: v2
+
+plugins:
+  - local: node_modules/.bin/protoc-gen-es
+    out: gen/es
+    opt:
+      - target=ts
+  - local: node_modules/.bin/protoc-gen-connect-query
+    out: gen/es
+    opt:
+      - target=ts
