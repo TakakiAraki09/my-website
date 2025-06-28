@@ -102,6 +102,31 @@ $ kubectl exec -it {{pod-name}} -n {{namespace}} -- /bin/bash
 $ k9s
 ```
 
+## 🛠️ Makeコマンド
+
+このプロジェクトではKustomizeを使用したリソース管理を簡単にするためのMakefileを提供しています。
+
+```bash
+# Kustomizeを使用してすべてのマニフェストを適用
+$ make apply
+
+# 適用前に差分を確認
+$ make diff
+
+# ドライランで適用内容を確認（実際には適用しない）
+$ make dry-run
+
+# すべてのリソースを削除
+$ make delete
+```
+
+### 各コマンドの詳細
+
+- **`make apply`**: `manifests/` ディレクトリ内のKustomization設定に基づいてリソースを作成・更新します
+- **`make diff`**: 現在のクラスタの状態と適用予定の設定の差分を表示します
+- **`make dry-run`**: 実際に適用せずに、どのようなリソースが作成・更新されるかを確認します
+- **`make delete`**: Kustomizationで管理されているすべてのリソースを削除します
+
 ## 🔍 トラブルシューティング
 
 ### 認証エラーの場合

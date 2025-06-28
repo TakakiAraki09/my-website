@@ -11,7 +11,7 @@ kind: Gateway
 metadata:
   name: demo
   annotations:
-    networking.gke.io/load-balancer-ip: "projects/my-website-464008/global/addresses/gkegw1-xmf2-default-demo-9xzqv0opo9r3"
+    networking.gke.io/address-name: "my-website-gateway-ip"  # 作成した静的IPの名前を指定
     networking.gke.io/ssl-certificates: "demo-certificate"
 spec:
   gatewayClassName: gke-l7-global-external-managed
