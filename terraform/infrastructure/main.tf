@@ -1,35 +1,4 @@
 
-resource "google_compute_network" "default" {
-  name    = "my-website-network"
-  project = var.project
-
-  auto_create_subnetworks  = false
-  enable_ula_internal_ipv6 = true
-}
-
-resource "google_compute_subnetwork" "default" {
-  name = "my-website-subnetwork"
-  project          = var.project
-
-  region        = var.region
-
-  ip_cidr_range = "10.0.0.0/16"
-  stack_type       = "IPV4_IPV6"
-  ipv6_access_type = "EXTERNAL"
-
-  network = google_compute_network.default.id
-
-  secondary_ip_range {
-    range_name    = "services-range"
-    ip_cidr_range = "192.168.0.0/24"
-  }
-
-  secondary_ip_range {
-    range_name    = "pod-ranges"
-    ip_cidr_range = "192.168.1.0/24"
-  }
-}
-
 # dns登録
 resource "google_dns_managed_zone" "arakey_dev" {
   name        = "arakey-dev"
@@ -44,16 +13,19 @@ output "name_servers" {
   description = "Configure these at your domain registrar"
 }
 
-data "google_compute_global_address" "gke_ingress_ip" {
-  name    = "gkegw1-xmf2-default-demo-9xzqv0opo9r3"
+# 静的IPアドレスを作成
+resource "google_compute_global_address" "gateway_ip" {
+  name    = "my-website-gateway-ip"
   project = var.project
 }
 
-resource "google_dns_record_set" "iperf3" {
+# DNSレコードに設定
+resource "google_dns_record_set" "www" {
   name         = "www.arakey.dev."
   type         = "A"
   ttl          = 300
   managed_zone = google_dns_managed_zone.arakey_dev.name
   project      = var.project
-  rrdatas      = [data.google_compute_global_address.gke_ingress_ip.address]
+  rrdatas      = [google_compute_global_address.gateway_ip.address]
 }
+
