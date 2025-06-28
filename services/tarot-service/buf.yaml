@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/zchee/schema/refs/heads/main/buf.schema.json
+version: v2
+modules:
+  - path: ./protobuf
+    excludes:
+      - vendor
+deps:
+  - buf.build/bufbuild/protovalidate
+  - buf.build/googleapis/googleapis
+  - buf.build/protocolbuffers/wellknowntypes
+# NOTE: The order of the following fields must follow https://buf.build/docs/lint/overview
+lint:
+  use:
+    - STANDARD
+  except:
+    - ENUM_VALUE_PREFIX
+    - FIELD_NOT_REQUIRED
+    - PACKAGE_NO_IMPORT_CYCLE
+  ignore:
+    - google
+  enum_zero_value_suffix: _UNSPECIFIED
+  rpc_allow_google_protobuf_empty_responses: true
+breaking:
+  use:
+    - PACKAGE
+  except:
+    - FIELD_SAME_DEFAULT
+    - PACKAGE_EXTENSION_NO_DELETE

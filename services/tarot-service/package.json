@@ -19,10 +19,6 @@
     "node": "22.x",
     "pnpm": ">=9"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gaudiy/gaudiy-fun-club.git"
-  },
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
     "@bufbuild/buf": "^1.54.0",
