@@ -12,6 +12,7 @@
     "lint": "biome lint"
   },
   "dependencies": {
+    "@workspace/user-service": "workspace:^",
     "@babylonjs/core": "^8.10.1",
     "@babylonjs/gui": "^8.10.1",
     "@bufbuild/protobuf": "^2.5.1",

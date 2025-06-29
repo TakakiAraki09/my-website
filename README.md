@@ -125,3 +125,10 @@ my-website/
 
 - [Kubernetes Configuration](./k8s/README.md)
 - [Infrastructure Management](./terraform/README.md)
+
+## SaaS
+
+- [Auth0](https://manage.auth0.com/dashboard/us/dev-am0wdybwdhrt26fr/)
+- [NeonDB](https://neon.com/)
+- [GCP](https://cloud.google.com/free?utm_source=google&utm_medium=cpc&utm_campaign=japac-JP-all-ja-dr-BKWS-all-core-trial-EXA-dr-1710102&utm_content=text-ad-none-none-DEV_c-CRE_602341359562-ADGP_Hybrid+%7C+BKWS+-+EXA+%7C+Txt+-GCP-General-core+brand-main-KWID_43700071566406798-kwd-87853815&userloc_1009280-network_g&utm_term=KW_gcp&gclsrc=aw.ds&gad_source=1&gad_campaignid=12757824394&gclid=Cj0KCQjwpf7CBhCfARIsANIETVpOOunQpsURt6OcQROKGLl1Kkt_CvzL8lIr3NyahKB8p4eWbK25BqYaAv-tEALw_wcB&hl=ja)
+

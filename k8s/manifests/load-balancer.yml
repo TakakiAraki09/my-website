@@ -9,12 +9,12 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: demo
+  name: demo-service
   annotations:
     networking.gke.io/address-name: "my-website-gateway-ip"  # 作成した静的IPの名前を指定
-    networking.gke.io/ssl-certificates: "demo-certificate"
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  gatewayClassName: gke-l7-global-external-managed
+  gatewayClassName: gke-l7-external-managed
   listeners:
     - name: https
       protocol: HTTPS
@@ -29,13 +29,20 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: demo-service
+  annotations:
+    external-dns.alpha.kubernetes.io/ttl: "30"
 spec:
   parentRefs:
-  - name: demo
-    sectionName: https  # HTTPSリスナーも参照
+    - kind: Gateway
+      name: demo-service
+      namespace: demo-service
   hostnames:
   - "www.arakey.dev"
   rules:
-  - backendRefs:
-    - name: demo-service # Service名
-      port: 443
+  - matches:
+      - path:
+          type: PathPrefix
+          value: /
+    backendRefs:
+      - name: demo-service # Service名
+        port: 80

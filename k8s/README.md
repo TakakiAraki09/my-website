@@ -163,3 +163,6 @@ $ kubectl logs {{pod-name}} -n {{namespace}} --previous
 - [GKE ドキュメント](https://cloud.google.com/kubernetes-engine/docs)
 - [Kubernetes ドキュメント](https://kubernetes.io/docs/home/)
 - [kubectl リファレンス](https://kubernetes.io/docs/reference/kubectl/)
+
+
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml

@@ -1,3 +1,6 @@
+.PHONY: auth
+auth:
+	gcloud container clusters get-credentials my-website-gke-dev --region=asia-northeast1
 .PHONY: apply
 apply:
 	kubectl apply -k manifests/

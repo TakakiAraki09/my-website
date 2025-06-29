@@ -70,3 +70,6 @@ vendor/
 # Go build cache
 .cache/go-build/
 
+
+.turbo
+
