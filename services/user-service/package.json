@@ -1,0 +1,27 @@
+{
+  "name": "@workspace/user-service",
+  "version": "1.0.0",
+  "main": "dist/User.js",
+  "types": "dist/User.d.ts",
+  "typings": "dist/User.d.ts",
+  "description": "",
+  "exports": {
+    "./dist/*": {
+      "types": "./dist/**/*.d.ts",
+      "default": "./dist/**/*.ts"
+    }
+
+  },
+  "scripts": {
+    "build": "tsup",
+    "format": "prettier --write \"**/*.{js,ts,tsx}\"",
+    "lint": "biome lint --error-on-warnings"
+  },
+  "keywords": [],
+  "author": "",
+  "packageManager": "pnpm@10.9.0",
+  "files": [
+    "dist/**",
+    "bin/**"
+  ]
+}
