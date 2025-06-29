@@ -16,7 +16,7 @@
 my-website/
 ├── applications/          # フロントエンド・Webアプリケーション層
 ├── packages/             # 共有ライブラリ・ユーティリティ
-├── services/             # バックエンドサービス・API層
+├── services/             # バックエンドサービスとコンポーネントを接続する部分
 ├── k8s/                  # Kubernetes デプロイメント設定
 ├── terraform/            # インフラストラクチャ管理
 ├── saas/                 # 外部SaaSサービス設定
