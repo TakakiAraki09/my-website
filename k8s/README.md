@@ -165,4 +165,8 @@ $ kubectl logs {{pod-name}} -n {{namespace}} --previous
 - [kubectl リファレンス](https://kubernetes.io/docs/reference/kubectl/)
 
 
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml
+memo
+
+kubectl create serviceaccount firestore-app
+
+serviceAccountName: demo-app # 作成した ServiceAccout の名前

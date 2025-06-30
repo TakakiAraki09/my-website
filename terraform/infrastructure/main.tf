@@ -26,6 +26,6 @@ resource "google_dns_record_set" "www" {
   ttl          = 300
   managed_zone = google_dns_managed_zone.arakey_dev.name
   project      = var.project
-  rrdatas      = [google_compute_global_address.gateway_ip.address]
+  rrdatas      = ["35.186.249.75"]
 }
 
