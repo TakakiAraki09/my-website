@@ -33,7 +33,7 @@ $ gcloud auth application-default login
 
 ```bash
 # kubectlの認証情報を取得
-$ gcloud container clusters get-credentials my-website-gke --region=asia-northeast1
+$ gcloud container clusters get-credentials my-website-gke-dev --region=asia-northeast1
 ```
 
 ### 3. Namespaceの作成

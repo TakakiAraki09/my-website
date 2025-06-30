@@ -12,6 +12,7 @@ spec:
       labels:
         app: demo
     spec:
+      serviceAccountName: demo-app
       containers:
         - name: demo
           image: nginx
@@ -30,6 +31,8 @@ kind: Service
 metadata:
   # これがService名
   name: demo-service
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
   selector:
     app: demo  # ← Deploymentのlabels.appと一致
